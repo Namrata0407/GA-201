@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .availability-yes {
+            color: green;
+        }
+
+        .availability-no {
+            color: red;
+        }
+    </style>
+
+    <h1>Menu</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Availability</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dish in menu %}
+            <tr>
+                <td>{{ dish.id }}</td>
+                <td>{{ dish.name }}</td>
+                <td>{{ dish.price }}</td>
+                <td class="{% if dish.availability %}availability-yes{% else %}availability-no{% endif %}">
+                    {{ "Yes" if dish.availability else "No" }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <a href="{{ url_for('add_dish') }}">Add New Dish</a>
+{% endblock %}

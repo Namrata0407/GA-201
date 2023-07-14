@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Update Availability</h1>
+    <h2>{{ dish.name }}</h2>
+    <form method="POST" action="{{ url_for('update_availability', dish_id=dish.id) }}">
+        <label for="availability">Availability:</label>
+        <input type="checkbox" id="availability" name="availability" {% if dish.availability %}checked{% endif %}>
+        <br><br>
+        <input type="submit" value="Update Availability">
+    </form>
+{% endblock %}

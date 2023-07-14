@@ -1,0 +1,32 @@
+[
+    {
+        "dish_id": 1,
+        "dish_name": "samosa",
+        "price": 20,
+        "availability": "yes"
+    },
+    {
+        "dish_id": 2,
+        "dish_name": "pizza",
+        "price": 500,
+        "availability": "no"
+    },
+    {
+        "dish_id": 3,
+        "dish_name": "cookies",
+        "price": 50,
+        "availability": "yes"
+    },
+    {
+        "dish_id": 5,
+        "dish_name": "nachose",
+        "price": 343,
+        "availability": "yes"
+    },
+    {
+        "dish_id": 7,
+        "dish_name": "rtrtrtrytytytyutuytuytuytu",
+        "price": "121344",
+        "availability": "yes"
+    }
+]

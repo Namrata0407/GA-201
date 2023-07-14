@@ -1,0 +1,72 @@
+<style>
+    .todo-app {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+      border-radius: 5px;
+    }
+  
+    .todo-app h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    .todo-app input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  
+    .todo-app button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+  
+    .todo-app ul {
+      list-style-type: none;
+      padding: 0;
+    }
+  
+    .todo-app li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      background-color: white;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+  
+    .todo-app button.delete-btn {
+      background-color: #f44336;
+    }
+  
+    .todo-app button.update-btn {
+      background-color: #ff9800;
+    }
+  </style>
+  
+  <div class="todo-app">
+    <h2>Todo App</h2>
+    <input [(ngModel)]="newTodo" placeholder="Add a new task">
+    <button (click)="addTodo()">Add</button>
+  
+    <ul>
+      <li *ngFor="let todo of todos; let i = index">
+        <span>{{ todo.text }}</span>
+        <button (click)="deleteTodo(i)" class="delete-btn">Delete</button>
+        <button (click)="toggleStatus(i)" class="update-btn">
+          {{ todo.status === 'Pending' ? 'Completed' : 'Pending' }}
+        </button>
+      </li>
+    </ul>
+  
+
+  </div>
+  

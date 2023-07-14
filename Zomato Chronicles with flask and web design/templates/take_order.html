@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Take Orders</h2>
+
+    <form id="orderForm">
+        <label for="customer_name">Customer Name:</label>
+        <input type="text" id="customer_name" name="customer_name" required><br>
+
+        <h3>Menu:</h3>
+        {% for dish in dishes %}
+        <div>
+            <input type="checkbox" id="dish_{{ dish.dish_id }}" name="dish_id" value="{{ dish.dish_id }}">
+            <label for="dish_{{ dish.dish_id }}">{{ dish.dish_name }} - {{ dish.price }}</label>
+        </div>
+        {% endfor %}
+
+        <input type="submit" value="Place Order">
+    </form>
+
+    <div id="orderResult"></div>
+
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            fetch('/take_orders', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('orderResult').innerHTML = 'Order placed successfully! Order ID: ' + data.order_id;
+                    form.reset();
+                } else {
+                    document.getElementById('orderResult').innerHTML = 'Failed to place order. Please try again.';
+                }
+            })
+            .catch(error => {
+                document.getElementById('orderResult').innerHTML = 'An error occurred while processing the order. Please try again.';
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,7 @@
+<div class="todo-item">
+    <h3>{{ todo.title }}</h3>
+    <p>{{ todo.description }}</p>
+    <button (click)="markAsCompleted()" [disabled]="todo.completed">Mark as Completed</button>
+    <button (click)="deleteTodo()">Delete</button>
+  </div>
+  

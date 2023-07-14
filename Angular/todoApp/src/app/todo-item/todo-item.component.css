@@ -1,0 +1,22 @@
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .todo-item h3 {
+    margin: 0;
+  }
+  
+  .todo-item p {
+    margin: 0;
+    margin-top: 5px;
+  }
+  
+  .todo-item button {
+    margin-left: 10px;
+  }
+  

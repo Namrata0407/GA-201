@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Orders</h1>
+    <table class="orders-table">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Dish IDs</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order['order_id'] }}</td>
+                    <td>{{ order['customer_name'] }}</td>
+                    <td>{{ order['dish_ids'] }}</td>
+                    <td>{{ order['status'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <style>
+        .orders-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .orders-table th,
+        .orders-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .orders-table th {
+            background-color: #f2f2f2;
+        }
+
+        .orders-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .orders-table tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>View Orders</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer Name</th>
+                <th>Dishes</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.customer_name }}</td>
+                <td>{{ order.dishes|join(', ') }}</td>
+                <td>{{ order.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Update Order Status</h3>
+    <form id="updateStatusForm">
+        <label for="order_id">Order ID:</label>
+        <input type="text" id="order_id" name="order_id" required><br>
+
+        <label for="status">New Status:</label>
+        <select id="status" name="status">
+            <option value="received">Received</option>
+            <option value="preparing">Preparing</option>
+            <option value="ready for pickup">Ready for Pickup</option>
+            <option value="delivered">Delivered</option>
+        </select><br>
+
+        <input type="submit" value="Update Status">
+    </form>
+
+    <div id="updateStatusResult"></div>
+
+    <script>
+        document.getElementById('updateStatusForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            fetch('/update_status', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('updateStatusResult').innerHTML = 'Order status updated successfully!';
+                    form.reset();
+                    // Refresh the page after status update
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000);
+                } else {
+                    document.getElementById('updateStatusResult').innerHTML = 'Failed to update order status. Please try again.';
+                }
+            })
+            .catch(error => {
+                document.getElementById('updateStatusResult').innerHTML = 'An error occurred while updating the order status. Please try again.';
+            });
+        });
+    </script>
+{% endblock %}

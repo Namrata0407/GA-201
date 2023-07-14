@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Update Order Status</h1>
+    <h2>Order ID: {{ order.id }}</h2>
+    <form method="POST" action="{{ url_for('update_status', order_id=order.id) }}">
+        <label for="status">Status:</label>
+        <select id="status" name="status">
+            <option value="received" {% if order.status == 'received' %}selected{% endif %}>Received</option>
+            <option value="preparing" {% if order.status == 'preparing' %}selected{% endif %}>Preparing</option>
+            <option value="ready for pickup" {% if order.status == 'ready for pickup' %}selected{% endif %}>Ready for Pickup</option>
+            <option value="delivered" {% if order.status == 'delivered' %}selected{% endif %}>Delivered</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Update Status">
+    </form>
+{% endblock %}
