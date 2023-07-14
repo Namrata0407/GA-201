@@ -1,0 +1,45 @@
+/* styles.css or your component's CSS file */
+nav {
+    background-color: #1289e4;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  li {
+    margin-right: 10px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  a:hover {
+    background-color: #555;
+  }
+  
+  @media screen and (max-width: 600px) {
+    nav {
+      padding: 10px 0;
+    }
+  
+    ul {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    li {
+      margin-bottom: 10px;
+    }
+  }

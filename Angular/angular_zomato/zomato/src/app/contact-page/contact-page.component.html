@@ -1,0 +1,21 @@
+<p class="order_summary">Orders Summary</p>
+
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Dish Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data">
+                <td>{{ item.username }}</td>
+                <td>{{ item.dish_name }}</td>
+                <td>{{ item.price }}</td>
+                <!-- <td><button (click)="deleteItem(item.id)" class="btn btn-danger">Delete</button></td> -->
+            </tr>
+        </tbody>
+    </table>
+</div>

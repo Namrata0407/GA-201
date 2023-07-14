@@ -1,0 +1,142 @@
+<div *ngIf="showPlaceOrderModal" class="modal-container">
+    <div class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Place Order</h5>
+                    <button type="button" class="close" (click)="closePlaceOrderModal()">
+                        &times;
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form (submit)="submitOrder()">
+                        <div class="form-group">
+                            <label for="orderUsername">Username:</label>
+                            <input type="text" class="form-control" id="orderUsername"
+                                [(ngModel)]="orderUsername" name="orderUsername">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop" (click)="closePlaceOrderModal()"></div>
+
+</div>
+
+<div class="page-container">
+    <!-- about-page.component.html -->
+    <h2 class="page-title">About Page</h2>
+
+    <div class="button-container">
+        <button (click)="openNewModal()" class="btn btn-primary">Add New Item</button>
+    </div>
+
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Dish Name</th>
+                    <th>Price</th>
+                    <th>Availability</th>
+                    <th>Remove Item</th>
+                    <th>Update Item</th>
+                    <th>Place Order</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of data">
+                    <td>{{ item.dish_name }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.availability }}</td>
+                    <td><button (click)="deleteItem(item.id)" class="btn btn-danger">Delete</button></td>
+                    <td>
+                        <button (click)="openModal(item)" class="btn btn-primary">Update</button>
+                        <div *ngIf="selectedItem && selectedItem.id === item.id" class="modal-container">
+                            <!-- Modal popup code -->
+                            <div class="modal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Update Item</h5>
+                                            <button type="button" class="close" (click)="closeModal()">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Update form -->
+                                            <form (submit)="submitUpdate()">
+                                                <div class="form-group">
+                                                    <label for="dishName">Dish Name:</label>
+                                                    <input type="text" class="form-control" id="dishName"
+                                                        [(ngModel)]="selectedItem.dish_name" name="dishName">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="price">Price:</label>
+                                                    <input type="number" class="form-control" id="price"
+                                                        [(ngModel)]="selectedItem.price" name="price">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="availability">Availability:</label>
+                                                    <input type="text" class="form-control" id="availability"
+                                                        [(ngModel)]="selectedItem.availability" name="availability">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-success">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-backdrop" (click)="closeModal()"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <button (click)="openPlaceOrderModal(item)" class="btn btn-success">Place Order</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- New Item Modal -->
+    <div *ngIf="showNewModal" class="modal-container">
+        <div class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add New Item</h5>
+                        <button type="button" class="close" (click)="closeNewModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form (submit)="submitNewItem()">
+                            <div class="form-group">
+                                <label for="newDishName">Dish Name:</label>
+                                <input type="text" class="form-control" id="newDishName" [(ngModel)]="newItem.dish_name"
+                                    name="newDishName">
+                            </div>
+                            <div class="form-group">
+                                <label for="newPrice">Price:</label>
+                                <input type="number" class="form-control" id="newPrice" [(ngModel)]="newItem.price"
+                                    name="newPrice">
+                            </div>
+                            <div class="form-group">
+                                <label for="newAvailability">Availability:</label>
+                                <input type="text" class="form-control" id="newAvailability"
+                                    [(ngModel)]="newItem.availability" name="newAvailability">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-backdrop" (click)="closeNewModal()"></div>
+    </div>
+
+  
+</div>
